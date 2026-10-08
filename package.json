@@ -3,6 +3,11 @@
 	"version": "0.0.1",
 	"private": true,
 	"type": "module",
+	"scripts": {
+		"check": "biome check",
+		"fix": "biome check --fix --unsafe",
+		"dev": "bun run -F @wallet/app dev"
+	},
 	"workspaces": {
 		"packages": [
 			"apps/*",
