@@ -17,11 +17,6 @@
 		}
 	},
 	"devDependencies": {
-		"@biomejs/biome": "catalog:",
-		"hono": "catalog:"
-	},
-	"dependencies": {
-		"@cloudflare/vite-plugin": "catalog:",
-		"react-router-hono-server": "catalog:"
+		"@biomejs/biome": "catalog:"
 	}
 }
