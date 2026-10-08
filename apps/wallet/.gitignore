@@ -9,3 +9,7 @@ node_modules/
 
 # ビルド生成物
 build/
+
+# 環境変数
+.env
+.dev.vars

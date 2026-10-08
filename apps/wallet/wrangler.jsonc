@@ -3,9 +3,17 @@
 	"name": "worker",
 	"main": "./app/server/index.ts",
 	"compatibility_date": "2026-10-08",
-	"compatibility_flags": ["nodejs_compat"],
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
 	"assets": {
 		"directory": "./build/client",
 		"binding": "ASSETS"
-	}
+	},
+	"hyperdrive": [
+		{
+			"binding": "HYPERDRIVE",
+			"id": "630e79b2b54a4c3382984de6db516c0a"
+		}
+	]
 }

@@ -6,6 +6,7 @@
 	},
 	"dependencies": {
 		"@wallet/app": "workspace:*",
+		"@wallet/db": "workspace:*",
 		"hono": "catalog:"
 	}
 }

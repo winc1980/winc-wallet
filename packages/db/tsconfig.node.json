@@ -1,0 +1,7 @@
+{
+	"extends": "@tsconfig/node26/tsconfig.json",
+	"include": ["drizzle.config.ts"],
+	"compilerOptions": {
+		"composite": true
+	}
+}
