@@ -8,8 +8,12 @@
 		"deploy": "bun run build && wrangler deploy",
 		"preview": "vite preview"
 	},
+	"exports": {
+		"./types": "./app/server/types.ts"
+	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.3.3",
+		"@wallet/api": "workspace:*",
 		"hono": "catalog:",
 		"isbot": "^5.2.2",
 		"react": "^19.3.0",

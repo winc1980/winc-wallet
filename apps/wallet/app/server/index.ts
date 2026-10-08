@@ -1,15 +1,11 @@
+import { api } from "@wallet/api"
 import { Hono } from "hono"
 import { RouterContextProvider } from "react-router"
 import { createHonoServer } from "react-router-hono-server/cloudflare"
 import { apiFetchContext, cookieContext } from "~/lib/context"
+import type { GeneratedBindings } from "~/server/types"
 
-const api = new Hono<{ Bindings: CloudflareBindings }>().get("/", (c) =>
-	c.json({ message: "hello from hono api route" }),
-)
-
-const app = new Hono<{ Bindings: CloudflareBindings }>()
-
-export type ApiType = typeof api
+const app = new Hono<{ Bindings: GeneratedBindings }>()
 
 export default await createHonoServer({
 	app,

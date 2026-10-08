@@ -5,6 +5,10 @@
 			"path": "./apps/wallet"
 		},
 		{
+			"name": "Api",
+			"path": "./apps/api"
+		},
+		{
 			"name": "Root",
 			"path": "."
 		}

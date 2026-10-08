@@ -1,0 +1,11 @@
+{
+	"name": "@wallet/api",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"dependencies": {
+		"@wallet/app": "workspace:*",
+		"hono": "catalog:"
+	}
+}

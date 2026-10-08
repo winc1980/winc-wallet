@@ -1,6 +1,6 @@
 import { hc } from "hono/client"
 import type { RouterContextProvider } from "react-router"
-import type { ApiType } from "~/server"
+import type { ApiType } from "~/server/types"
 import { apiFetchContext, cookieContext } from "./context"
 
 export function getApiClient(context: Readonly<RouterContextProvider>) {
