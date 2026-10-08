@@ -1,11 +1,10 @@
 import { Hono } from "hono"
 import { createHonoServer } from "react-router-hono-server/cloudflare"
 
-const app = new Hono<{ Bindings: CloudflareBindings }>()
+const api = new Hono<{ Bindings: CloudflareBindings }>().get("/", (c) =>
+	c.json({ message: "hello from hono api route" }),
+)
 
-export default await createHonoServer({
-	app,
-	configure(app) {
-		app.get("/api", (c) => c.json({ message: "hello from hono" }))
-	},
-})
+const app = new Hono<{ Bindings: CloudflareBindings }>().route("/api", api)
+
+export default await createHonoServer({ app })
