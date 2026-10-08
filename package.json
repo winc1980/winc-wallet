@@ -9,10 +9,19 @@
 			"packages/*"
 		],
 		"catalog": {
-			"@biomejs/biome": "^2.5.15"
+			"@biomejs/biome": "^2.5.15",
+			"@cloudflare/vite-plugin": "^1.63.0",
+			"hono": "^4.13.13",
+			"react-router-hono-server": "^4.1.4",
+			"wrangler": "^4.110.0"
 		}
 	},
 	"devDependencies": {
-		"@biomejs/biome": "catalog:"
+		"@biomejs/biome": "catalog:",
+		"hono": "catalog:"
+	},
+	"dependencies": {
+		"@cloudflare/vite-plugin": "catalog:",
+		"react-router-hono-server": "catalog:"
 	}
 }
