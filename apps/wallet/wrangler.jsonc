@@ -16,5 +16,6 @@
 	],
 	"ai": {
 		"binding": "AI"
-	}
+	},
+	"r2_buckets": [{ "binding": "RECEIPTS", "bucket_name": "receipts" }]
 }
