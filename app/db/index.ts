@@ -1,9 +1,8 @@
-import type { GeneratedBindings } from "@wallet/app/types"
 import { sql } from "drizzle-orm"
 import { Hono } from "hono"
 import { createDb } from "./client"
 
-export const dbApi = new Hono<{ Bindings: GeneratedBindings }>().get(
+export const dbApi = new Hono<{ Bindings: CloudflareBindings }>().get(
 	"/health/db",
 	async (c) => {
 		const { db, close } = await createDb(c.env.HYPERDRIVE.connectionString)

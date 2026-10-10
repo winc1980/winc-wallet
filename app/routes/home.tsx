@@ -1,5 +1,5 @@
-import youtubeIcon from "~/assets/youtube-icon.png"
-import { getApiClient } from "~/lib/api"
+import youtubeImage from "~app/assets/youtube-icon.png"
+import { getApiClient } from "~app/lib/api"
 import type { Route } from "./+types/home"
 
 export async function loader({ context }: Route.LoaderArgs) {
@@ -14,7 +14,7 @@ export default function HomePage({
 	return (
 		<div>
 			<div>{data.message}</div>
-			<img src={youtubeIcon} alt="YouTubeのアイコン" />
+			<img src={youtubeImage} alt="YouTubeのアイコン" />
 		</div>
 	)
 }
