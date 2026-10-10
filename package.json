@@ -6,22 +6,40 @@
 	"scripts": {
 		"check": "biome check",
 		"fix": "biome check --fix --unsafe",
-		"dev": "bun run -F @wallet/app dev"
+		"dev": "react-router dev",
+		"build": "react-router build",
+		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
+		"deploy": "bun run build && wrangler deploy",
+		"preview": "vite preview",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:custom": "drizzle-kit generate --custom",
+		"db:studio": "drizzle-kit studio"
 	},
-	"workspaces": {
-		"packages": [
-			"apps/*",
-			"packages/*"
-		],
-		"catalog": {
-			"@biomejs/biome": "^2.5.15",
-			"@cloudflare/vite-plugin": "^1.63.0",
-			"hono": "^4.13.13",
-			"react-router-hono-server": "^4.1.4",
-			"wrangler": "^4.110.0"
-		}
+	"dependencies": {
+		"@cloudflare/vite-plugin": "^1.63.0",
+		"@tailwindcss/vite": "^4.3.3",
+		"drizzle-orm": "^0.45.3",
+		"hono": "^4.13.13",
+		"isbot": "^5.2.2",
+		"pg": "^8.23.1",
+		"react": "^19.3.0",
+		"react-dom": "^19.3.0",
+		"react-router": "^8.4.0",
+		"react-router-hono-server": "^4.1.4",
+		"tailwindcss": "^4.3.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "catalog:"
+		"@biomejs/biome": "^2.5.15",
+		"@cloudflare/workers-types": "^5.20261008.1",
+		"@react-router/dev": "^8.4.0",
+		"@types/node": "^26.6.4",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"vite": "^8.3.3",
+		"wrangler": "^4.149.0",
+		"@tsconfig/node26": "^26.0.1",
+		"@types/pg": "^8.23.1",
+		"drizzle-kit": "^0.31.11"
 	}
 }

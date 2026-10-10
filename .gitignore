@@ -1,1 +1,15 @@
+# NPMパッケージ
 node_modules/
+
+# React Router 一時ファイル
+.react-router/
+
+# Wrangler (Cloudflare Workers) 一時ファイル
+.wrangler/
+
+# ビルド生成物
+build/
+
+# 環境変数
+.env
+.dev.vars
