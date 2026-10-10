@@ -16,6 +16,8 @@
 		"catalog": {
 			"@biomejs/biome": "^2.5.15",
 			"@cloudflare/vite-plugin": "^1.63.0",
+			"@hono/standard-validator": "^0.4.0",
+			"effect": "^4.0.0-rc.118",
 			"hono": "^4.13.13",
 			"react-router-hono-server": "^4.1.4",
 			"wrangler": "^4.110.0"
