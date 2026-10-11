@@ -3,10 +3,10 @@ import { AwsClient } from "aws4fetch"
 import { eq } from "drizzle-orm"
 import { Hono } from "hono"
 import * as z from "zod"
-import { createDb } from "~app/db/client"
+import type { ApiEnv } from "~api/types"
 import { receiptImagesTable } from "~app/db/schema"
 
-export default new Hono<{ Bindings: CloudflareBindings }>()
+export default new Hono<ApiEnv>()
 	.post("/upload", async (c) => {
 		const id = crypto.randomUUID()
 
@@ -29,7 +29,7 @@ export default new Hono<{ Bindings: CloudflareBindings }>()
 			aws: { signQuery: true, allHeaders: true },
 		})
 
-		const { db } = await createDb(c.env.HYPERDRIVE.connectionString)
+		const db = c.get("db")
 		await db.insert(receiptImagesTable).values({ uuid: id, state: "uploading" })
 
 		return c.json({ id, uploadUrl: signed.url })
@@ -38,7 +38,7 @@ export default new Hono<{ Bindings: CloudflareBindings }>()
 		"/upload/:id/complete",
 		zValidator("param", z.object({ id: z.uuid() })),
 		async (c) => {
-			const { db } = await createDb(c.env.HYPERDRIVE.connectionString)
+			const db = c.get("db")
 			await db
 				.update(receiptImagesTable)
 				.set({ state: "uploaded" })
