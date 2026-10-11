@@ -32,7 +32,7 @@ export async function action({ request, context }: Route.ActionArgs) {
 	}
 
 	const client = getApiClient(context)
-	const response = await client.receipt
+	const response = await client.receipts
 		.$post({
 			form: { "receipt-images": files as File[] },
 		})

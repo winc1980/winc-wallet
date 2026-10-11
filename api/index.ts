@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai"
 import { Hono } from "hono"
-import receiptApi from "./receipt"
+import receiptsApi from "./receipts"
 
 export const api = new Hono<{ Bindings: CloudflareBindings }>()
 	.get("/", (c) => c.json({ message: "api route" }))
@@ -14,6 +14,6 @@ export const api = new Hono<{ Bindings: CloudflareBindings }>()
 
 		return c.json({ text: res.text })
 	})
-	.route("/receipt", receiptApi)
+	.route("/receipts", receiptsApi)
 
 export type ApiType = typeof api

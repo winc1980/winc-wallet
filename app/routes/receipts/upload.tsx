@@ -48,7 +48,7 @@ export async function clientAction({
 		}
 
 		const uploadResult = await promiseToResult(
-			client.receipt.upload.$post().then((res) => res.json()),
+			client.receipts.upload.$post().then((res) => res.json()),
 		)
 
 		if (!uploadResult.success) {
@@ -66,7 +66,7 @@ export async function clientAction({
 		}
 
 		const uploadCompletionResult = await promiseToResult(
-			client.receipt.upload[":id"].complete.$post({
+			client.receipts.upload[":id"].complete.$post({
 				param: { id: uploadResult.data.id },
 			}),
 		)

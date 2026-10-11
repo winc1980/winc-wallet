@@ -5,6 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"check": "biome check",
+		"typecheck": "bunx tsc --noEmit",
 		"fix": "biome check --fix --unsafe",
 		"dev": "react-router dev",
 		"build": "react-router build",
