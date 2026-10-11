@@ -1,6 +1,7 @@
 import { LoaderCircleIcon } from "lucide-react"
 import { useEffect } from "react"
 import { Form, useNavigation } from "react-router"
+import { ImageInput } from "~app/components/featured/image-input"
 import { getClientApiClient } from "~app/lib/api"
 import { promiseToResult } from "~app/utils/promise-helper"
 import type { Route } from "./+types/upload"
@@ -17,13 +18,7 @@ export default function ReceiptUploadPage({
 	return (
 		<div>
 			<Form method="post" encType="multipart/form-data">
-				<input
-					className="border"
-					type="file"
-					name="receipt-images"
-					accept="image/*"
-					multiple
-				/>
+				<ImageInput className="border" name="receipt-images" multiple />
 				<input type="submit" value="送信" />
 				{navigation.state === "submitting" && (
 					<LoaderCircleIcon className="animate-spin" />
@@ -33,11 +28,7 @@ export default function ReceiptUploadPage({
 	)
 }
 
-export async function clientAction({
-	context,
-	request,
-}: Route.ClientActionArgs) {
-	console.log(context)
+export async function clientAction({ request }: Route.ClientActionArgs) {
 	const formData = await request.formData()
 	const files = formData.getAll("receipt-images")
 	const client = getClientApiClient()
