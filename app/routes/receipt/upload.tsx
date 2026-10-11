@@ -65,6 +65,15 @@ export async function clientAction({
 			return { success: false as const, error: "R2へのfetchに失敗" }
 		}
 
+		const uploadCompletionResult = await promiseToResult(
+			client.receipt.upload[":id"].complete.$post({
+				param: { id: uploadResult.data.id },
+			}),
+		)
+		if (!uploadCompletionResult.success) {
+			return uploadCompletionResult
+		}
+
 		return { success: true as const, id: uploadResult.data.id }
 	})
 

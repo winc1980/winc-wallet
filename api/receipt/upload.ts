@@ -1,9 +1,13 @@
+import { zValidator } from "@hono/zod-validator"
 import { AwsClient } from "aws4fetch"
+import { eq } from "drizzle-orm"
 import { Hono } from "hono"
+import * as z from "zod"
+import { createDb } from "~app/db/client"
+import { receiptImagesTable } from "~app/db/schema"
 
-export default new Hono<{ Bindings: CloudflareBindings }>().post(
-	"/upload",
-	async (c) => {
+export default new Hono<{ Bindings: CloudflareBindings }>()
+	.post("/upload", async (c) => {
 		const id = crypto.randomUUID()
 
 		const key = `images/${id}.jpg`
@@ -25,8 +29,20 @@ export default new Hono<{ Bindings: CloudflareBindings }>().post(
 			aws: { signQuery: true, allHeaders: true },
 		})
 
-		// insert
+		const { db } = await createDb(c.env.HYPERDRIVE.connectionString)
+		await db.insert(receiptImagesTable).values({ uuid: id, state: "uploading" })
 
 		return c.json({ id, uploadUrl: signed.url })
-	},
-)
+	})
+	.post(
+		"/upload/:id/complete",
+		zValidator("param", z.object({ id: z.uuid() })),
+		async (c) => {
+			const { db } = await createDb(c.env.HYPERDRIVE.connectionString)
+			await db
+				.update(receiptImagesTable)
+				.set({ state: "uploaded" })
+				.where(eq(receiptImagesTable.uuid, c.req.valid("param").id))
+			return c.json({ success: true })
+		},
+	)
