@@ -3,9 +3,7 @@
 	"name": "worker",
 	"main": "./app/server/index.ts",
 	"compatibility_date": "2026-10-08",
-	"compatibility_flags": [
-		"nodejs_compat"
-	],
+	"compatibility_flags": ["nodejs_compat"],
 	"assets": {
 		"directory": "./build/client",
 		"binding": "ASSETS"
