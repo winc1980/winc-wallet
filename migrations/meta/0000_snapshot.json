@@ -1,5 +1,5 @@
 {
-  "id": "d93bb184-b460-4263-9bb4-659cd262558c",
+  "id": "e52e7ff8-aaa3-4645-9f87-3987b0d48a0e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -69,6 +69,28 @@
           "type": "uuid",
           "primaryKey": true,
           "notNull": true
+        },
+        "state": {
+          "name": "state",
+          "type": "state",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'uploading'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
         }
       },
       "indexes": {},
@@ -80,7 +102,16 @@
       "isRLSEnabled": false
     }
   },
-  "enums": {},
+  "enums": {
+    "public.state": {
+      "name": "state",
+      "schema": "public",
+      "values": [
+        "uploading",
+        "uploaded"
+      ]
+    }
+  },
   "schemas": {},
   "sequences": {},
   "roles": {},
