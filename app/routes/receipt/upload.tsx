@@ -2,6 +2,7 @@ import { LoaderCircleIcon } from "lucide-react"
 import { useEffect } from "react"
 import { Form, useNavigation } from "react-router"
 import { getClientApiClient } from "~app/lib/api"
+import { promiseToResult } from "~app/utils/promise-helper"
 import type { Route } from "./+types/upload"
 
 export default function ReceiptUploadPage({
@@ -16,7 +17,13 @@ export default function ReceiptUploadPage({
 	return (
 		<div>
 			<Form method="post" encType="multipart/form-data">
-				<input className="border" type="file" name="receipt-images" multiple />
+				<input
+					className="border"
+					type="file"
+					name="receipt-images"
+					accept="image/*"
+					multiple
+				/>
 				<input type="submit" value="送信" />
 				{navigation.state === "submitting" && (
 					<LoaderCircleIcon className="animate-spin" />
@@ -37,24 +44,28 @@ export async function clientAction({
 
 	const promises = files.map(async (file) => {
 		if (!(file instanceof File)) {
-			return { success: false, error: "無効な形式" }
+			return { success: false as const, error: "無効な形式" }
 		}
 
-		const { uploadUrl, id } = await client.receipt.upload
-			.$post()
-			.then((res) => res.json())
+		const uploadResult = await promiseToResult(
+			client.receipt.upload.$post().then((res) => res.json()),
+		)
 
-		const put = await fetch(uploadUrl, {
+		if (!uploadResult.success) {
+			return uploadResult
+		}
+
+		const put = await fetch(uploadResult.data.uploadUrl, {
 			method: "PUT",
 			headers: { "Content-Type": "image/jpeg" },
 			body: file,
 		})
 
 		if (!put.ok) {
-			return { success: false, error: "R2へのfetchに失敗" }
+			return { success: false as const, error: "R2へのfetchに失敗" }
 		}
 
-		return { success: true, id }
+		return { success: true as const, id: uploadResult.data.id }
 	})
 
 	return { result: await Promise.all(promises) }
