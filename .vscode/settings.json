@@ -11,8 +11,7 @@
 		"editor.indentSize": "tabSize",
 		"editor.codeActionsOnSave": {
 			"source.fixAll.biome": "explicit",
-			"source.organizeImports.biome": "explicit",
-			"source.sortImports": "explicit"
+			"source.organizeImports.biome": "explicit"
 		}
 	},
 	"[markdown]": {
