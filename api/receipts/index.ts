@@ -2,6 +2,7 @@ import { GoogleGenAI } from "@google/genai"
 import { Hono } from "hono"
 import * as z from "zod"
 import type { ApiEnv } from "~api/types"
+import { receiptImagesTable } from "~app/db/schema"
 import uploadApi from "./upload"
 
 const receiptDataSchema = z.object({
@@ -72,5 +73,26 @@ export default new Hono<ApiEnv>()
 		const data = (await Promise.all(promises)).filter((data) => data !== null)
 
 		return c.json({ success: false, data })
+	})
+	.get("/", async (c) => {
+		const db = c.get("db")
+		const ids = await db
+			.select({ id: receiptImagesTable.uuid })
+			.from(receiptImagesTable)
+		const r2 = c.get("r2")
+		const urlPromises: Promise<string>[] = []
+
+		for (const { id } of ids) {
+			const url = new URL(
+				`https://${c.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com/${c.env.R2_BUCKET_NAME}/images/${id}.jpg`,
+			)
+			url.searchParams.set("X-Amz-Expires", "3600")
+			const signedUrl = r2
+				.sign(new Request(url), { aws: { signQuery: true } })
+				.then((signed) => signed.url)
+			urlPromises.push(signedUrl)
+		}
+
+		return c.json({ urls: await Promise.all(urlPromises) })
 	})
 	.route("/", uploadApi)

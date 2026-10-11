@@ -18,7 +18,12 @@ export default function ReceiptUploadPage({
 	return (
 		<div>
 			<Form method="post" encType="multipart/form-data">
-				<ImageInput className="border" name="receipt-images" multiple />
+				<ImageInput
+					className="border"
+					name="receipt-images"
+					capture="environment"
+					multiple
+				/>
 				<input type="submit" value="送信" />
 				{navigation.state === "submitting" && (
 					<LoaderCircleIcon className="animate-spin" />
