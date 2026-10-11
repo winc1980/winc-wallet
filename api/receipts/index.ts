@@ -1,6 +1,7 @@
 import { GoogleGenAI } from "@google/genai"
 import { Hono } from "hono"
 import * as z from "zod"
+import type { ApiEnv } from "~api/types"
 import uploadApi from "./upload"
 
 const receiptDataSchema = z.object({
@@ -27,7 +28,7 @@ const ocrResultSchema = z.discriminatedUnion("success", [
 	}),
 ])
 
-export default new Hono<{ Bindings: CloudflareBindings }>()
+export default new Hono<ApiEnv>()
 	.post("/", async (c) => {
 		const formData = await c.req.formData()
 		const files = formData.getAll("receipt-images")

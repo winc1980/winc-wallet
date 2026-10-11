@@ -1,16 +1,12 @@
 import { sql } from "drizzle-orm"
 import { Hono } from "hono"
-import { createDb } from "./client"
+import type { ApiEnv } from "~api/types"
 
-export const dbApi = new Hono<{ Bindings: CloudflareBindings }>().get(
+export const dbApi = new Hono<ApiEnv>().get(
 	"/health/db",
 	async (c) => {
-		const { db, close } = await createDb(c.env.HYPERDRIVE.connectionString)
-		try {
-			await db.execute(sql`select 1`)
-			return c.json({ ok: true })
-		} finally {
-			c.executionCtx.waitUntil(close())
-		}
+		const db = c.get("db")
+		await db.execute(sql`select 1`)
+		return c.json({ ok: true })
 	},
 )
