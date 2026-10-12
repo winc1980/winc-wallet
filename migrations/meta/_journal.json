@@ -43,6 +43,13 @@
       "when": 1791808458536,
       "tag": "0005_awesome_misty_knight",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791808578007,
+      "tag": "0006_shallow_wonder_man",
+      "breakpoints": true
     }
   ]
 }
