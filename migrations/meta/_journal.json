@@ -22,6 +22,27 @@
       "when": 1791799979442,
       "tag": "0002_silly_metal_master",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791808089369,
+      "tag": "0003_white_true_believers",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791808383574,
+      "tag": "0004_brainy_quasimodo",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791808458536,
+      "tag": "0005_awesome_misty_knight",
+      "breakpoints": true
     }
   ]
 }

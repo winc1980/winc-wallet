@@ -7,4 +7,8 @@ export const authOptions = {
 		enabled: true,
 		minPasswordLength: MIN_PASSWORD_LENGTH,
 	},
+	user: { modelName: "auth_user" },
+	session: { modelName: "auth_session" },
+	verification: { modelName: "auth_verification" },
+	account: { modelName: "auth_account" },
 } satisfies BetterAuthOptions
