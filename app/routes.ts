@@ -12,4 +12,5 @@ export default [
 		route("list", "routes/receipts/list.tsx"),
 		route("upload", "routes/receipts/upload.tsx"),
 	]),
+	...prefix("auth", [index("routes/auth/index.tsx")]),
 ] satisfies RouteConfig
