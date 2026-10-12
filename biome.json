@@ -6,7 +6,14 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"includes": ["**/*", "!./apps/**/*", "!./packages/**/*"]
+		"includes": [
+			"**/*",
+			"!build/**/*",
+			"!worker-configuration.d.ts",
+			"!.react-router/**/*",
+			"!.wrangler/**/*",
+			"!migrations/**/*"
+		]
 	},
 	"formatter": {
 		"enabled": true,

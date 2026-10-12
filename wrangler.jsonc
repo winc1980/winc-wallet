@@ -13,5 +13,11 @@
 			"binding": "HYPERDRIVE",
 			"id": "630e79b2b54a4c3382984de6db516c0a"
 		}
+	],
+	"r2_buckets": [
+		{
+			"bucket_name": "receipts",
+			"binding": "RECEIPTS_BUCKET"
+		}
 	]
 }
