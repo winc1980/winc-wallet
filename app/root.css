@@ -10,4 +10,5 @@ body {
 
 @theme {
 	--color-border: black;
+	--color-destructive: var(--color-red-500);
 }
