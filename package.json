@@ -15,7 +15,8 @@
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:custom": "drizzle-kit generate --custom",
-		"db:studio": "drizzle-kit studio"
+		"db:studio": "drizzle-kit studio",
+		"auth:generate": "bunx auth@latest generate --config ./auth.cli.ts --output ./app/db/schema/auth.ts -y && bun run fix ./app/db/schema/auth.ts"
 	},
 	"dependencies": {
 		"@cloudflare/vite-plugin": "^1.63.0",
