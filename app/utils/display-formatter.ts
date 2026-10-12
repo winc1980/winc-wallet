@@ -1,0 +1,19 @@
+const zenkakuMap: [number, string][] = [
+	[0, "０"],
+	[1, "１"],
+	[2, "２"],
+	[3, "３"],
+	[4, "４"],
+	[5, "５"],
+	[6, "６"],
+	[7, "７"],
+	[8, "８"],
+	[9, "９"],
+]
+
+export function toZenkakuNum(num: number) {
+	return zenkakuMap.reduce(
+		(acc, current) => acc.replaceAll(current[0].toString(), current[1]),
+		num.toString(),
+	)
+}
