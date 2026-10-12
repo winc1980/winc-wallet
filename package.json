@@ -23,7 +23,8 @@
 		"@hono/zod-validator": "^0.9.1",
 		"@tailwindcss/vite": "^4.3.3",
 		"aws4fetch": "^1.0.20",
-		"drizzle-orm": "^0.45.3",
+		"better-auth": "^1.7.7",
+		"drizzle-orm": "^0.45.4",
 		"hono": "^4.13.13",
 		"isbot": "^5.2.2",
 		"lucide-react": "^1.55.0",
@@ -39,13 +40,13 @@
 		"@biomejs/biome": "^2.5.15",
 		"@cloudflare/workers-types": "^5.20261008.1",
 		"@react-router/dev": "^8.4.0",
+		"@tsconfig/node26": "^26.0.1",
 		"@types/node": "^26.6.4",
+		"@types/pg": "^8.23.1",
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
+		"drizzle-kit": "^0.31.11",
 		"vite": "^8.3.3",
-		"wrangler": "^4.149.0",
-		"@tsconfig/node26": "^26.0.1",
-		"@types/pg": "^8.23.1",
-		"drizzle-kit": "^0.31.11"
+		"wrangler": "^4.149.0"
 	}
 }

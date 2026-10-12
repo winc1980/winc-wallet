@@ -15,6 +15,13 @@
       "when": 1791778941911,
       "tag": "0001_overjoyed_chat",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791799979442,
+      "tag": "0002_silly_metal_master",
+      "breakpoints": true
     }
   ]
 }
