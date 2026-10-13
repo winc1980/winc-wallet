@@ -1,7 +1,7 @@
 import { Button, Field, Form } from "@base-ui/react"
 import { Link, Form as RouterForm, redirect } from "react-router"
 import * as z from "zod"
-import { SmallFormLayout } from "~app/components/layout/common-layout"
+import { SmallBoxLayout } from "~app/components/layout/common-layout"
 import { authErrorToFormErrors } from "~app/db/schema/errors"
 import { useFormLoadState } from "~app/hooks/use-is-form-loading"
 import { authClient } from "~app/lib/auth/client"
@@ -20,7 +20,7 @@ const formSchema = z.object({
 export default function LoginPage({ actionData }: Route.ComponentProps) {
 	const isLoading = useFormLoadState()
 	return (
-		<SmallFormLayout className="flex flex-col gap-6">
+		<SmallBoxLayout className="flex flex-col gap-6">
 			<Link to={"/"}>ホームへ</Link>
 			<h1 className="font-bold">ログイン</h1>
 			<Form
@@ -63,7 +63,7 @@ export default function LoginPage({ actionData }: Route.ComponentProps) {
 					</Button>
 				</div>
 			</Form>
-		</SmallFormLayout>
+		</SmallBoxLayout>
 	)
 }
 

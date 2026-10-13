@@ -1,7 +1,7 @@
 import { Button, Field, Form } from "@base-ui/react"
 import { Form as RouterForm, redirect, useNavigation } from "react-router"
 import * as z from "zod"
-import { SmallFormLayout } from "~app/components/layout/common-layout"
+import { SmallBoxLayout } from "~app/components/layout/common-layout"
 import { authErrorToFormErrors } from "~app/db/schema/errors"
 import { authClient } from "~app/lib/auth/client"
 import { MIN_PASSWORD_LENGTH } from "~app/lib/auth/option"
@@ -20,7 +20,7 @@ const formSchema = z.object({
 export default function RegisterPage({ actionData }: Route.ComponentProps) {
 	const navigation = useNavigation()
 	return (
-		<SmallFormLayout className="flex flex-col gap-6">
+		<SmallBoxLayout className="flex flex-col gap-6">
 			<h1 className="font-bold">新規登録</h1>
 			<Form
 				render={<RouterForm method="POST" />}
@@ -70,7 +70,7 @@ export default function RegisterPage({ actionData }: Route.ComponentProps) {
 					</Button>
 				</div>
 			</Form>
-		</SmallFormLayout>
+		</SmallBoxLayout>
 	)
 }
 

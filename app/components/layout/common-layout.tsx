@@ -7,7 +7,7 @@ export function CommonLayout({ children }: { children: ReactNode }) {
 	)
 }
 
-export function SmallFormLayout({
+export function SmallBoxLayout({
 	children,
 	className,
 }: {
@@ -16,7 +16,7 @@ export function SmallFormLayout({
 }) {
 	return (
 		<div className="w-full h-dvh flex flex-col items-center justify-center">
-			<div className={cn("w-full md:w-3xl md:border mx-auto p-6", className)}>
+			<div className={cn("w-full md:w-3xl md:box mx-auto p-6", className)}>
 				{children}
 			</div>
 		</div>
