@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"check": "biome check",
-		"typecheck": "bunx tsc --noEmit",
+		"typecheck": "bunx react-router typegen && bunx tsc --noEmit",
 		"fix": "biome check --fix --unsafe",
 		"dev": "react-router dev",
 		"build": "react-router build",
@@ -26,6 +26,7 @@
 		"@tailwindcss/vite": "^4.3.3",
 		"aws4fetch": "^1.0.20",
 		"better-auth": "^1.7.7",
+		"clsx": "^2.1.1",
 		"drizzle-orm": "^0.45.4",
 		"hono": "^4.13.13",
 		"isbot": "^5.2.2",
@@ -35,6 +36,7 @@
 		"react-dom": "^19.3.0",
 		"react-router": "^8.4.0",
 		"react-router-hono-server": "^4.1.4",
+		"tailwind-merge": "^3.7.0",
 		"tailwindcss": "^4.3.3",
 		"zod": "^4.6.5"
 	},

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { cn } from "~app/utils/cn"
 
 export function CommonLayout({ children }: { children: ReactNode }) {
 	return (
@@ -6,10 +7,18 @@ export function CommonLayout({ children }: { children: ReactNode }) {
 	)
 }
 
-export function SmallFormLayout({ children }: { children: ReactNode }) {
+export function SmallFormLayout({
+	children,
+	className,
+}: {
+	children: ReactNode
+	className?: string
+}) {
 	return (
 		<div className="w-full h-dvh flex flex-col items-center justify-center">
-			<div className="w-full md:w-3xl md:border mx-auto p-6">{children}</div>
+			<div className={cn("w-full md:w-3xl md:border mx-auto p-6", className)}>
+				{children}
+			</div>
 		</div>
 	)
 }

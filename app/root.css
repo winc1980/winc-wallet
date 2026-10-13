@@ -10,5 +10,12 @@ body {
 
 @theme {
 	--color-border: black;
+	--color-fg: black;
+	--color-fg-active: white;
+	--color-fg-disabled: var(--color-neutral-400);
+	--color-bg: white;
+	--color-bg-active: black;
+	--color-bg-disabled: var(--color-neutral-200);
+	--color-bg-muted: var(--color-neutral-100);
 	--color-destructive: var(--color-red-500);
 }
