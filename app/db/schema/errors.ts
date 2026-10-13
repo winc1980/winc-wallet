@@ -15,6 +15,10 @@ const rules: Partial<Record<AuthErrorCode, ErrorRule>> = {
 		message:
 			"このユーザーはすでに存在しています。別のメールアドレスを使用してください",
 	},
+	INVALID_EMAIL_OR_PASSWORD: {
+		field: null,
+		message: "メールアドレスまたはパスワードが違います",
+	},
 }
 
 export type FormErrors = {

@@ -8,7 +8,13 @@ export const authOptions = {
 		minPasswordLength: MIN_PASSWORD_LENGTH,
 	},
 	user: { modelName: "authUser" },
-	session: { modelName: "authSession" },
+	session: {
+		modelName: "authSession",
+		cookieCache: {
+			enabled: true,
+			maxAge: 5 * 60, // ５分
+		},
+	},
 	verification: { modelName: "authVerification" },
 	account: { modelName: "authAccount" },
 } satisfies BetterAuthOptions

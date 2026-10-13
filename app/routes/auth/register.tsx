@@ -21,7 +21,7 @@ export default function RegisterPage({ actionData }: Route.ComponentProps) {
 	const navigation = useNavigation()
 	return (
 		<SmallFormLayout className="flex flex-col gap-6">
-			<h1 className="font-bold">ログイン</h1>
+			<h1 className="font-bold">新規登録</h1>
 			<Form
 				render={<RouterForm method="POST" />}
 				errors={actionData?.fieldErrors}
@@ -61,10 +61,12 @@ export default function RegisterPage({ actionData }: Route.ComponentProps) {
 						type="submit"
 						disabled={navigation.state === "submitting"}
 						className={cn(
-							"border flex items-center justify-center px-4 py-2 transition-colors bg-bg text-fg hover:bg-bg-active hover:text-fg-active disabled:text-fg-disabled disabled:bg-bg-disabled",
+							"border flex items-center justify-center px-4 py-2 transition-colors bg-bg text-fg",
+							"hover:bg-bg-active hover:text-fg-active",
+							"disabled:text-fg-disabled disabled:bg-bg-disabled",
 						)}
 					>
-						ログイン
+						登録
 					</Button>
 				</div>
 			</Form>
@@ -78,9 +80,8 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 	if (!parseResult.success)
 		return { fieldErrors: z.flattenError(parseResult.error).fieldErrors }
 
-	const { error } = await authClient.signUp.email(parseResult.data)
-	console.log(error)
-	if (error) return { ...authErrorToFormErrors(error) }
+	const { error: authError } = await authClient.signUp.email(parseResult.data)
+	if (authError) return { ...authErrorToFormErrors(authError) }
 
-	return redirect("/")
+	return redirect("/auth/login")
 }
