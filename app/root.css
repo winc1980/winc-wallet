@@ -33,7 +33,7 @@ body {
 		transition: box-shadow var(--tr-duration) ease-in-out;
 
 		&:hover {
-			box-shadow: rgba(0, 0, 0, 20%) 2px 2px;
+			box-shadow: rgba(0, 0, 0, 30%) 2px 2px;
 
 			transition:
 				box-shadow var(--tr-duration) ease-in-out,
@@ -54,7 +54,13 @@ body {
 		}
 
 		&:active {
-			box-shadow: rgba(0, 0, 0, 20%) 0px 0px;
+			box-shadow: rgba(0, 0, 0, 40%) 0px 0px;
 		}
 	}
+}
+
+@utility input-text {
+	background-color: var(--color-bg-muted);
+	outline: none;
+	padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
 }

@@ -31,29 +31,17 @@ export default function RegisterPage({ actionData }: Route.ComponentProps) {
 				<fieldset className="space-y-4">
 					<Field.Root name="name" className="flex flex-col gap-1">
 						<Field.Label>アカウント名</Field.Label>
-						<Field.Control
-							type="text"
-							required
-							className="bg-bg-muted outline-none px-4 py-2"
-						/>
+						<Field.Control type="text" required className="input-text" />
 						<Field.Error className="text-destructive" />
 					</Field.Root>
 					<Field.Root name="email" className="flex flex-col gap-1">
 						<Field.Label>メールアドレス</Field.Label>
-						<Field.Control
-							type="email"
-							required
-							className="bg-bg-muted outline-none px-4 py-2"
-						/>
+						<Field.Control type="email" required className="input-text" />
 						<Field.Error className="text-destructive" />
 					</Field.Root>
 					<Field.Root name="password" className="flex flex-col gap-1">
 						<Field.Label>パスワード</Field.Label>
-						<Field.Control
-							type="password"
-							required
-							className="bg-bg-muted outline-none px-4 py-2"
-						/>
+						<Field.Control type="password" required className="input-text" />
 						<Field.Error className="text-destructive" />
 					</Field.Root>
 				</fieldset>
@@ -62,7 +50,7 @@ export default function RegisterPage({ actionData }: Route.ComponentProps) {
 						type="submit"
 						disabled={isLoading}
 						className={cn(
-							"border box box-interactive flex items-center justify-center px-4 py-2",
+							"box box-interactive flex items-center justify-center px-4 py-2",
 						)}
 					>
 						登録
