@@ -1,9 +1,9 @@
 import { Button, Field, Form } from "@base-ui/react"
-import { Link, Form as RouterForm, redirect } from "react-router"
+import { Form as RouterForm, redirect } from "react-router"
 import * as z from "zod"
 import { SmallBoxLayout } from "~app/components/layout/common-layout"
 import { authErrorToFormErrors } from "~app/db/schema/errors"
-import { useFormLoadState } from "~app/hooks/use-is-form-loading"
+import { useIsFormLoading } from "~app/hooks/use-is-form-loading"
 import { authClient } from "~app/lib/auth/client"
 import { MIN_PASSWORD_LENGTH } from "~app/lib/auth/option"
 import { cn } from "~app/utils/cn"
@@ -18,10 +18,9 @@ const formSchema = z.object({
 })
 
 export default function LoginPage({ actionData }: Route.ComponentProps) {
-	const isLoading = useFormLoadState()
+	const isLoading = useIsFormLoading()
 	return (
 		<SmallBoxLayout className="flex flex-col gap-6">
-			<Link to={"/"}>ホームへ</Link>
 			<h1 className="font-bold">ログイン</h1>
 			<Form
 				render={<RouterForm method="POST" />}
@@ -56,7 +55,7 @@ export default function LoginPage({ actionData }: Route.ComponentProps) {
 						type="submit"
 						disabled={isLoading}
 						className={cn(
-							"border box hoverable disableable flex items-center justify-center px-4 py-2",
+							"border box box-interactive flex items-center justify-center px-4 py-2",
 						)}
 					>
 						ログイン

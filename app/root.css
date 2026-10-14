@@ -26,31 +26,35 @@ body {
 	box-shadow: rgba(0, 0, 0, 20%) 4px 4px;
 	background-color: var(--color-bg);
 	color: var(--color-fg);
+}
 
-	transition: box-shadow var(--tr-duration) ease-in-out;
+@utility box-interactive {
+	&.box {
+		transition: box-shadow var(--tr-duration) ease-in-out;
 
-	&.hoverable:hover {
-		box-shadow: rgba(0, 0, 0, 20%) 2px 2px;
+		&:hover {
+			box-shadow: rgba(0, 0, 0, 20%) 2px 2px;
 
-		transition:
-			box-shadow var(--tr-duration) ease-in-out,
-			background-color var(--tr-duration) ease-in-out,
-			color var(--tr-duration) ease-in-out;
+			transition:
+				box-shadow var(--tr-duration) ease-in-out,
+				background-color var(--tr-duration) ease-in-out,
+				color var(--tr-duration) ease-in-out;
 
-		background-color: var(--color-bg-active);
-		color: var(--color-fg-active);
-	}
-
-	&.disableable {
-		&:disabled,
-		&[aria-disabled="true"] {
-			box-shadow: rgba(0, 0, 0, 0%) 0px 0px;
-			background-color: var(--color-bg-disabled);
-			color: var(--color-fg-disabled);
+			background-color: var(--color-bg-active);
+			color: var(--color-fg-active);
 		}
-	}
 
-	&:active {
-		box-shadow: rgba(0, 0, 0, 20%) 0px 0px;
+		&.disableable {
+			&:disabled,
+			&[aria-disabled="true"] {
+				box-shadow: rgba(0, 0, 0, 0%) 0px 0px;
+				background-color: var(--color-bg-disabled);
+				color: var(--color-fg-disabled);
+			}
+		}
+
+		&:active {
+			box-shadow: rgba(0, 0, 0, 20%) 0px 0px;
+		}
 	}
 }

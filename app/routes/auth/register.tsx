@@ -1,8 +1,9 @@
 import { Button, Field, Form } from "@base-ui/react"
-import { Form as RouterForm, redirect, useNavigation } from "react-router"
+import { Form as RouterForm, redirect } from "react-router"
 import * as z from "zod"
 import { SmallBoxLayout } from "~app/components/layout/common-layout"
 import { authErrorToFormErrors } from "~app/db/schema/errors"
+import { useIsFormLoading } from "~app/hooks/use-is-form-loading"
 import { authClient } from "~app/lib/auth/client"
 import { MIN_PASSWORD_LENGTH } from "~app/lib/auth/option"
 import { cn } from "~app/utils/cn"
@@ -18,7 +19,7 @@ const formSchema = z.object({
 })
 
 export default function RegisterPage({ actionData }: Route.ComponentProps) {
-	const navigation = useNavigation()
+	const isLoading = useIsFormLoading()
 	return (
 		<SmallBoxLayout className="flex flex-col gap-6">
 			<h1 className="font-bold">新規登録</h1>
@@ -59,11 +60,9 @@ export default function RegisterPage({ actionData }: Route.ComponentProps) {
 				<div className="flex flex-col md:items-end-safe mt-8">
 					<Button
 						type="submit"
-						disabled={navigation.state === "submitting"}
+						disabled={isLoading}
 						className={cn(
-							"border flex items-center justify-center px-4 py-2 transition-colors bg-bg text-fg",
-							"hover:bg-bg-active hover:text-fg-active",
-							"disabled:text-fg-disabled disabled:bg-bg-disabled",
+							"border box box-interactive flex items-center justify-center px-4 py-2",
 						)}
 					>
 						登録
