@@ -30,7 +30,7 @@ export default new Hono<ApiEnv>()
 		})
 
 		const db = c.get("db")
-		await db.insert(receiptImagesTable).values({ uuid: id, state: "uploading" })
+		await db.insert(receiptImagesTable).values({ id, state: "uploading" })
 
 		return c.json({ id, uploadUrl: signed.url })
 	})
@@ -42,7 +42,7 @@ export default new Hono<ApiEnv>()
 			await db
 				.update(receiptImagesTable)
 				.set({ state: "uploaded" })
-				.where(eq(receiptImagesTable.uuid, c.req.valid("param").id))
+				.where(eq(receiptImagesTable.id, c.req.valid("param").id))
 			return c.json({ success: true })
 		},
 	)

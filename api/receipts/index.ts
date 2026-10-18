@@ -77,7 +77,7 @@ export default new Hono<ApiEnv>()
 	.get("/", async (c) => {
 		const db = c.get("db")
 		const ids = await db
-			.select({ id: receiptImagesTable.uuid })
+			.select({ id: receiptImagesTable.id })
 			.from(receiptImagesTable)
 		const r2 = c.get("r2")
 		const urlPromises: Promise<string>[] = []

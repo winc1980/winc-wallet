@@ -1,4 +1,4 @@
-import { getApiClient } from "~app/lib/api"
+import { getApiClient } from "~app/lib/route-modules/api"
 import type { Route } from "./+types/list"
 
 export async function loader({ context }: Route.LoaderArgs) {

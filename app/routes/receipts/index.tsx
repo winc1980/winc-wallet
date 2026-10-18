@@ -1,6 +1,6 @@
 import { LoaderCircleIcon } from "lucide-react"
 import { Form, useNavigation } from "react-router"
-import { getApiClient } from "~app/lib/api"
+import { getApiClient } from "~app/lib/route-modules/api"
 import type { Route } from "./+types"
 
 export default function ReceiptPage({ actionData }: Route.ComponentProps) {

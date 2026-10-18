@@ -6,6 +6,7 @@ import { r2Middleware } from "./middlewares/r2"
 import organizationsApi from "./organizations"
 import receiptsApi from "./receipts"
 import type { ApiEnv } from "./types"
+import usersApi from "./users"
 
 export const api = new Hono<ApiEnv>()
 	.use(dbMiddleware)
@@ -26,6 +27,7 @@ export const api = new Hono<ApiEnv>()
 
 		return c.json({ text: res.text })
 	})
+	.route("/users", usersApi)
 	.route("/receipts", receiptsApi)
 	.route("/organizations", organizationsApi)
 

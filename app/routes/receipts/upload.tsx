@@ -2,7 +2,7 @@ import { LoaderCircleIcon } from "lucide-react"
 import { useEffect } from "react"
 import { Form, useNavigation } from "react-router"
 import { ImageInput } from "~app/components/featured/image-input"
-import { getClientApiClient } from "~app/lib/api"
+import { getClientApiClient } from "~app/lib/route-modules/api"
 import { promiseToResult } from "~app/utils/promise-helper"
 import type { Route } from "./+types/upload"
 
