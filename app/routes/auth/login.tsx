@@ -2,12 +2,12 @@ import { Button, Field, Form } from "@base-ui/react"
 import { Form as RouterForm, redirect } from "react-router"
 import * as z from "zod"
 import { SmallBoxLayout } from "~app/components/layout/common-layout"
-import { authErrorToFormErrors } from "~app/db/schema/errors"
 import { useIsFormLoading } from "~app/hooks/use-is-form-loading"
 import { authClient } from "~app/lib/auth/client"
 import { MIN_PASSWORD_LENGTH } from "~app/lib/auth/option"
 import { cn } from "~app/utils/cn"
 import { toZenkakuNum } from "~app/utils/display-formatter"
+import { authErrorToFormErrors } from "~app/utils/form-errors"
 import type { Route } from "./+types/login"
 
 const formSchema = z.object({
