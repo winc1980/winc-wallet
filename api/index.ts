@@ -3,6 +3,7 @@ import { Hono } from "hono"
 import { authProviderMiddleware } from "./middlewares/auth"
 import { dbMiddleware } from "./middlewares/db"
 import { r2Middleware } from "./middlewares/r2"
+import organizationsApi from "./organizations"
 import receiptsApi from "./receipts"
 import type { ApiEnv } from "./types"
 
@@ -26,5 +27,6 @@ export const api = new Hono<ApiEnv>()
 		return c.json({ text: res.text })
 	})
 	.route("/receipts", receiptsApi)
+	.route("/organizations", organizationsApi)
 
 export type ApiType = typeof api
