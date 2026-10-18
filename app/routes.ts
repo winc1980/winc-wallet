@@ -17,4 +17,9 @@ export default [
 		route("register", "routes/auth/register.tsx"),
 		route("login", "routes/auth/login.tsx"),
 	]),
+
+	...prefix("organizations", [
+		index("routes/organizations/list.tsx"),
+		...prefix(":organizationId", [index("routes/organizations/home.tsx")]),
+	]),
 ] satisfies RouteConfig
