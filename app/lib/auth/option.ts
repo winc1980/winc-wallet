@@ -17,4 +17,9 @@ export const authOptions = {
 	},
 	verification: { modelName: "authVerification" },
 	account: { modelName: "authAccount" },
+	advanced: {
+		database: {
+			generateId: "uuid",
+		},
+	},
 } satisfies BetterAuthOptions

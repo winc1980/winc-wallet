@@ -8,6 +8,7 @@ import {
 	timestamp,
 	uuid,
 } from "drizzle-orm/pg-core"
+import { primaryKey } from "../columns"
 
 /**
  * `assets`: 資産
@@ -29,19 +30,19 @@ export const accountTypeEnum = pgEnum("account_type", [
 ])
 
 export const accountsTable = pgTable("accounts", {
-	id: uuid("id").primaryKey(),
+	id: primaryKey(),
 	name: text().notNull(),
 })
 
 export const journalEntriesTable = pgTable("journal_entries", {
-	id: uuid("id").primaryKey(),
+	id: primaryKey(),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 })
 
 export const journalLinesTable = pgTable(
 	"journal_lines",
 	{
-		id: uuid("id").primaryKey(),
+		id: primaryKey(),
 		entryId: uuid("entry_id")
 			.references(() => journalEntriesTable.id)
 			.notNull(),

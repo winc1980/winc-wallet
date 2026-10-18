@@ -50,6 +50,13 @@
       "when": 1791808578007,
       "tag": "0006_shallow_wonder_man",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1792309233130,
+      "tag": "0007_dusty_thaddeus_ross",
+      "breakpoints": true
     }
   ]
 }
