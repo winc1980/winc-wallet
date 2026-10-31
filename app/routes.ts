@@ -20,6 +20,7 @@ export default [
 
 	...prefix("organizations", [
 		index("routes/organizations/list.tsx"),
+		route("new", "routes/organizations/new.tsx"),
 		...prefix(":organizationId", [index("routes/organizations/home.tsx")]),
 	]),
 ] satisfies RouteConfig
