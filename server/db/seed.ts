@@ -1,5 +1,5 @@
 import { reset } from "drizzle-seed"
-import * as schema from "~app/db/schema"
+import * as schema from "~server/db/schema"
 import { createDb } from "./client"
 
 const WINC_ID = "0bd436a9-a4e4-4ba0-b70c-5a562b0676c0"

@@ -3,8 +3,8 @@ import { AwsClient } from "aws4fetch"
 import { eq } from "drizzle-orm"
 import { Hono } from "hono"
 import * as z from "zod"
-import type { ApiEnv } from "~api/types"
-import { receiptImagesTable } from "~app/db/schema"
+import { receiptImagesTable } from "~server/db/schema/receipt-images"
+import type { ApiEnv } from "../types"
 
 export default new Hono<ApiEnv>()
 	.post("/upload", async (c) => {

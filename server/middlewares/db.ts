@@ -1,6 +1,6 @@
 import { createMiddleware } from "hono/factory"
-import type { ApiEnv } from "~api/types"
-import { createDb } from "~app/db/client"
+import { createDb } from "~server/db/client"
+import type { ApiEnv } from "../types"
 
 export const dbMiddleware = createMiddleware<ApiEnv>(async (c, next) => {
 	const { db, close } = await createDb(c.env.HYPERDRIVE.connectionString)

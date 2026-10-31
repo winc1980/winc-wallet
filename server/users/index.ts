@@ -1,7 +1,10 @@
 import { eq } from "drizzle-orm"
 import { Hono } from "hono"
-import type { ApiEnv } from "~api/types"
-import { organizationMembersTable, organizationsTable } from "~app/db/schema"
+import {
+	organizationMembersTable,
+	organizationsTable,
+} from "~server/db/schema/organizations"
+import type { ApiEnv } from "../types"
 
 export default new Hono<ApiEnv>().get("/:userId/organizations", async (c) => {
 	const db = c.get("db")

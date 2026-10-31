@@ -1,6 +1,6 @@
 import type { AwsClient } from "aws4fetch"
-import type { DB } from "~app/db/types"
 import type { createAuth } from "~app/lib/auth"
+import type { DB } from "./db/types"
 
 export type ApiEnv = {
 	Bindings: CloudflareBindings

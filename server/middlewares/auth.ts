@@ -1,6 +1,6 @@
 import { createMiddleware } from "hono/factory"
-import type { ApiEnv } from "~api/types"
 import { createAuth } from "~app/lib/auth"
+import type { ApiEnv } from "../types"
 
 export const authProviderMiddleware = createMiddleware<ApiEnv>(
 	async (c, next) => {

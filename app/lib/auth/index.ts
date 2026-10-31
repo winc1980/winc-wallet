@@ -1,7 +1,7 @@
 import { drizzleAdapter } from "@better-auth/drizzle-adapter"
 import { betterAuth } from "better-auth"
-import { usersTable } from "~app/db/schema"
-import type { DB } from "~app/db/types"
+import { usersTable } from "~server/db/schema/user"
+import type { DB } from "~server/db/types"
 import { authOptions } from "./option"
 
 export function createAuth(db: DB, env: { secret: string; baseURL: string }) {

@@ -1,6 +1,6 @@
 import { sql } from "drizzle-orm"
 import { Hono } from "hono"
-import type { ApiEnv } from "~api/types"
+import type { ApiEnv } from "../../server/types"
 
 export const dbApi = new Hono<ApiEnv>().get("/health/db", async (c) => {
 	const db = c.get("db")
