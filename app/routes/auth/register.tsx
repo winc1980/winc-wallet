@@ -10,14 +10,6 @@ import { toZenkakuNum } from "~app/utils/display-formatter"
 import { authErrorToFormErrors } from "~app/utils/form-errors"
 import type { Route } from "./+types/register"
 
-const formSchema = z.object({
-	name: z.string().min(2, { error: "２文字以上で設定してください" }).nonempty(),
-	email: z.email({ error: "無効な形式のメールアドレスです" }).nonempty(),
-	password: z.string().min(MIN_PASSWORD_LENGTH, {
-		error: `${toZenkakuNum(MIN_PASSWORD_LENGTH)}文字以上で設定してください`,
-	}),
-})
-
 export default function RegisterPage({ actionData }: Route.ComponentProps) {
 	const isLoading = useIsFormLoading()
 	return (
@@ -60,6 +52,14 @@ export default function RegisterPage({ actionData }: Route.ComponentProps) {
 		</SmallBoxLayout>
 	)
 }
+
+const formSchema = z.object({
+	name: z.string().min(2, { error: "２文字以上で設定してください" }).nonempty(),
+	email: z.email({ error: "無効な形式のメールアドレスです" }).nonempty(),
+	password: z.string().min(MIN_PASSWORD_LENGTH, {
+		error: `${toZenkakuNum(MIN_PASSWORD_LENGTH)}文字以上で設定してください`,
+	}),
+})
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
 	const input = Object.fromEntries(await request.formData())
