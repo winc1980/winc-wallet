@@ -26,7 +26,7 @@
 	"[markdown]": {
 		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
 	},
-	"cSpell.words": ["genai", "hoverable"],
+	"cSpell.words": ["bunx", "genai", "hoverable"],
 	"files.exclude": {
 		".react-router": true,
 		".wrangler": true,
