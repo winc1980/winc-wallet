@@ -4,7 +4,7 @@ import {
 	organizationMembersTable,
 	organizationsTable,
 } from "~server/db/schema/organizations"
-import type { ApiEnv } from "../types"
+import type { ApiEnv } from "../../types"
 
 export default new Hono<ApiEnv>().get("/:userId/organizations", async (c) => {
 	const db = c.get("db")

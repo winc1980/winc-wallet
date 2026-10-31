@@ -1,12 +1,12 @@
 import { GoogleGenAI } from "@google/genai"
 import { Hono } from "hono"
+import organizationsApi from "./features/organizations"
+import receiptsApi from "./features/receipts"
+import usersApi from "./features/users"
 import { authProviderMiddleware } from "./middlewares/auth"
 import { dbMiddleware } from "./middlewares/db"
 import { r2Middleware } from "./middlewares/r2"
-import organizationsApi from "./organizations"
-import receiptsApi from "./receipts"
 import type { ApiEnv } from "./types"
-import usersApi from "./users"
 
 export const api = new Hono<ApiEnv>()
 	.use(dbMiddleware)

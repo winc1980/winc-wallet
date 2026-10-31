@@ -2,7 +2,7 @@ import { GoogleGenAI } from "@google/genai"
 import { Hono } from "hono"
 import * as z from "zod"
 import { receiptImagesTable } from "~server/db/schema/receipt-images"
-import type { ApiEnv } from "../types"
+import type { ApiEnv } from "../../types"
 import uploadApi from "./upload"
 
 const receiptDataSchema = z.object({
