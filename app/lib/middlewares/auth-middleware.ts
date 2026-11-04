@@ -16,7 +16,7 @@ async function getSession(
 }
 
 export const sessionContext =
-	createContext<Awaited<ReturnType<typeof getSession>>>()
+	createContext<NonNullable<Awaited<ReturnType<typeof getSession>>>>()
 
 export const authMiddleware: MiddlewareFunction<Response> = async (
 	{ request, context },

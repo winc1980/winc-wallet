@@ -3,7 +3,7 @@ import { internalServerError } from "~server/libs/handler-modules"
 import type { ApiEnv } from "~server/types"
 import { OrganizationRepository } from "./repository"
 
-export const organizationHandler = new Hono<ApiEnv>()
+export const organizationApi = new Hono<ApiEnv>()
 	.basePath("/organizations")
 	.get("/me", async (c) => {
 		const auth = c.get("auth")
