@@ -7,6 +7,7 @@ import { authOptions } from "./option"
 export function createAuth(db: DB, env: { secret: string; baseURL: string }) {
 	return betterAuth({
 		...authOptions,
+		trustedOrigins: ["http://192.168.0.58:5173"],
 		database: drizzleAdapter(db, { provider: "pg" }),
 		secret: env.secret,
 		baseURL: env.baseURL,

@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root"
 import "./root.css"
+import { ViewTransition } from "react"
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -33,7 +34,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				<div className="root">{children}</div>
+				<ViewTransition>
+					<div className="root">{children}</div>
+				</ViewTransition>
 				<ScrollRestoration />
 				<Scripts />
 			</body>

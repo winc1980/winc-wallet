@@ -1,14 +1,15 @@
 import { sql } from "drizzle-orm"
 import {
+	boolean,
 	check,
 	integer,
 	pgEnum,
 	pgTable,
 	text,
-	timestamp,
 	uuid,
 } from "drizzle-orm/pg-core"
-import { primaryKey } from "../columns"
+import { createdAt, primaryKey } from "../columns"
+import { organizationsTable } from "./organizations"
 
 /**
  * `assets`: 資産
@@ -29,16 +30,23 @@ export const accountTypeEnum = pgEnum("account_type", [
 	"expense",
 ])
 
+// 勘定科目
 export const accountsTable = pgTable("accounts", {
 	id: primaryKey(),
 	name: text().notNull(),
+	type: accountTypeEnum("type").notNull(),
 })
 
+// 仕訳
 export const journalEntriesTable = pgTable("journal_entries", {
 	id: primaryKey(),
-	createdAt: timestamp("created_at").defaultNow().notNull(),
+	createdAt: createdAt(),
+	eventId: uuid("event_id")
+		.references(() => eventsTable.id)
+		.notNull(),
 })
 
+// 仕訳の一行
 export const journalLinesTable = pgTable(
 	"journal_lines",
 	{
@@ -49,10 +57,18 @@ export const journalLinesTable = pgTable(
 		accountId: uuid("account_id")
 			.references(() => accountsTable.id)
 			.notNull(),
-		partyId: text(),
 		amount: integer().notNull(),
 	},
 	(table) => [check("amount_nonzero_check", sql`${table.amount} <> 0`)],
 )
 
-export const eventsTable = pgTable("events", {})
+// イベント
+export const eventsTable = pgTable("events", {
+	id: primaryKey(),
+	name: text().notNull().default("default"),
+	organizationId: uuid("organization_id")
+		.references(() => organizationsTable.id)
+		.notNull(),
+	createdAt: createdAt(),
+	default: boolean().default(false).notNull(),
+})

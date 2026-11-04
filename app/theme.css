@@ -1,0 +1,31 @@
+@theme {
+	/* Primary */
+	--color-primary: var(--color-emerald-600);
+	--color-on-primary: var(--color-emerald-50);
+	--color-primary-container: var(--color-emerald-200);
+	--color-on-primary-container: var(--color-emerald-700);
+
+	/* Secondary */
+	--color-secondary: var(--color-slate-600);
+	--color-on-secondary: var(--color-slate-50);
+	--color-secondary-container: var(--color-slate-200);
+	--color-on-secondary-container: var(--color-slate-700);
+
+	/* Destructive */
+	--color-destructive: var(--color-orange-600);
+	--color-on-destructive: var(--color-orange-50);
+	--color-destructive-container: var(--color-orange-200);
+	--color-on-destructive-container: var(--color-orange-700);
+
+	/* Surface */
+	--color-surface: var(--color-gray-100);
+	--color-surface-container: var(--color-gray-200);
+	--color-surface-container-high: var(--color-gray-300);
+	--color-surface-container-low: var(--color-gray-50);
+	--color-on-surface: var(--color-gray-900);
+	--color-on-surface-variant: var(--color-gray-700);
+
+	/* Outline */
+	--color-outline: var(--color-gray-600);
+	--color-outline-variant: var(--color-gray-400);
+}

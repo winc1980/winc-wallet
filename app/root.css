@@ -1,76 +1,14 @@
 @import "tailwindcss";
 
+@import "./theme.css";
+
 .root {
 	isolation: isolate;
 }
 
 body {
 	position: relative;
-}
-
-@theme {
-	--color-border: black;
-	--color-fg: black;
-	--color-fg-active: white;
-	--color-fg-disabled: var(--color-neutral-400);
-	--color-bg: white;
-	--color-bg-active: black;
-	--color-bg-disabled: var(--color-neutral-200);
-	--color-bg-muted: var(--color-neutral-100);
-	--color-destructive: var(--color-red-500);
-}
-
-@utility box {
-	--tr-duration: 200ms;
-	--tr-duration-fast: 100ms;
-	border: 1px solid var(--color-border);
-	box-shadow: rgba(0, 0, 0, 20%) 4px 4px;
-	background-color: var(--color-bg);
-	color: var(--color-fg);
-}
-
-@utility box-interactive {
-	&.box {
-		outline: none;
-		transition:
-			box-shadow var(--tr-duration) ease-in-out,
-			box-shadow var(--tr-duration) ease-in-out,
-			background-color var(--tr-duration) ease-in-out,
-			color var(--tr-duration) ease-in-out;
-
-		&:focus-visible {
-			outline: 1px solid var(--color-border);
-		}
-
-		&:hover {
-			box-shadow: rgba(0, 0, 0, 30%) 2px 2px;
-			background-color: var(--color-bg-active);
-			color: var(--color-fg-active);
-		}
-
-		&.disableable {
-			&:disabled,
-			&[aria-disabled="true"] {
-				box-shadow: rgba(0, 0, 0, 0%) 0px 0px;
-				background-color: var(--color-bg-disabled);
-				color: var(--color-fg-disabled);
-			}
-		}
-
-		&:active {
-			box-shadow: rgba(0, 0, 0, 40%) 0px 0px;
-		}
-	}
-}
-
-@utility input-text {
-	background-color: var(--color-bg-muted);
-	outline: none;
-	padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
-}
-
-@utility icon-inline {
-	display: inline-block;
-	width: 1em;
-	height: 1em;
+	background-color: var(--color-surface);
+	color: var(--color-on-surface);
+	border-color: var(--color-outline);
 }

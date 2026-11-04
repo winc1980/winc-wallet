@@ -9,6 +9,7 @@ async function main() {
 	console.log("created DB")
 	await reset(db, schema)
 	console.log("reset DB")
+	// 組織追加
 	await db
 		.insert(schema.organizationsTable)
 		.values({
@@ -16,6 +17,11 @@ async function main() {
 			id: WINC_ID,
 		})
 		.onConflictDoNothing()
+	// 主要な勘定科目追加
+	await db.insert(schema.accountsTable).values({
+		name: "現金",
+		type: "assets",
+	})
 	console.log("inserted DB")
 }
 
