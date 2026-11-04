@@ -1,4 +1,4 @@
-import { pgTable, text, uuid } from "drizzle-orm/pg-core"
+import { boolean, pgTable, text, uuid } from "drizzle-orm/pg-core"
 import { primaryKey } from "../columns"
 import { authUser } from "./auth"
 
@@ -15,4 +15,5 @@ export const organizationMembersTable = pgTable("organization_members", {
 	userId: uuid("user_id")
 		.references(() => authUser.id)
 		.notNull(),
+	isAccountant: boolean("is_accountant").notNull().default(false),
 })

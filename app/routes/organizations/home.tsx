@@ -8,24 +8,30 @@ import type { Route } from "./+types/home"
 
 export async function loader({ context, params, request }: Route.LoaderArgs) {
 	const api = context.get(apiClientContext)
+	const cookie = await getCookieSession(request)
+
 	const res = await api.organizations[":organizationId"].$get({
 		param: { organizationId: params.organizationId },
 	})
-
-	const cookie = await getCookieSession(request)
 	if (!res.ok) return await redirectError(res, cookie)
-
 	const { organization } = await res.json()
+
+	const res2 = await api.organizations[":organizationId"].members.$get({
+		param: { organizationId: params.organizationId },
+	})
+	if (!res2.ok) return await redirectError(res2, cookie)
+	const { members } = await res2.json()
+
 	cookie.set("lastOrganizationId", organization.id)
 
 	return data(
-		{ organization },
+		{ organization, members },
 		{ headers: { "Set-Cookie": await commitSession(cookie) } },
 	)
 }
 
 export default function OrganizationHomePage({
-	loaderData: { organization },
+	loaderData: { organization, members },
 }: Route.ComponentProps) {
 	return (
 		<div className="h-dvh overflow-y-auto">
@@ -38,6 +44,14 @@ export default function OrganizationHomePage({
 			</div>
 			<div className="px-4 py-6 space-y-6">
 				<h1>{organization.name}</h1>
+				<div className="space-y-2">
+					<h2>メンバー</h2>
+					<div className="space-y-1">
+						{members.all.map((m) => (
+							<div key={m.id}>{m.name}</div>
+						))}
+					</div>
+				</div>
 			</div>
 		</div>
 	)

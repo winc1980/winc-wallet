@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { internalServerError } from "~server/libs/handler-modules"
+import { internalServerErrorResponse } from "~server/libs/handler-modules"
 import type { ApiEnv } from "~server/types"
 import { OrganizationRepository } from "./repository"
 
@@ -16,7 +16,7 @@ export const organizationApi = new Hono<ApiEnv>()
 			.tapError((e) => console.log(e))
 			.match(
 				(organizations) => c.json({ organizations }, 200),
-				() => internalServerError(c),
+				() => internalServerErrorResponse(c),
 			)
 	})
 	.get("/:organizationId", async (c) => {
@@ -27,6 +27,17 @@ export const organizationApi = new Hono<ApiEnv>()
 				if (organization) return c.json({ organization }, 200)
 				return c.json({ error: "not found" }, 404)
 			},
-			() => internalServerError(c),
+			() => internalServerErrorResponse(c),
+		)
+	})
+	.get("/:organizationId/members", async (c) => {
+		const repo = new OrganizationRepository(c.get("db"))
+		const result = await repo.getAllMembers(c.req.param().organizationId)
+		return result.match(
+			(members) => {
+				if (members) return c.json({ members }, 200)
+				return c.json({ error: "not found" }, 404)
+			},
+			() => internalServerErrorResponse(c),
 		)
 	})

@@ -7,6 +7,7 @@ import {
 import type { DB } from "~server/db/types"
 import { RepositoryError } from "~server/domain/errors"
 import { type Result, wrapPromise } from "~server/libs/result"
+import type { User } from "../users/types"
 import type { IOrganizationRepository } from "./interface"
 import type { Organization } from "./types"
 
@@ -48,6 +49,34 @@ export class OrganizationRepository implements IOrganizationRepository {
 		)
 		return result
 			.map((rows) => rows.map((row) => row.organizations))
+			.mapError((e) => new RepositoryError("organization", e.message, e.cause))
+	}
+
+	async getAllMembers(
+		organizationId: string,
+	): Promise<
+		Result<{ accountants: User[]; all: User[] } | null, RepositoryError>
+	> {
+		const result = await wrapPromise(
+			this.db
+				.select({
+					id: usersTable.id,
+					name: usersTable.name,
+					isAccountant: organizationMembersTable.isAccountant,
+				})
+				.from(organizationMembersTable)
+				.innerJoin(
+					usersTable,
+					eq(organizationMembersTable.userId, usersTable.id),
+				)
+				.where(eq(organizationMembersTable.organizationId, organizationId)),
+		)
+
+		return result
+			.map((rows) => ({
+				accountants: rows.filter((r) => r.isAccountant),
+				all: rows,
+			}))
 			.mapError((e) => new RepositoryError("organization", e.message, e.cause))
 	}
 }

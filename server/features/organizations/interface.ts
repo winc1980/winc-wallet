@@ -1,5 +1,6 @@
 import type { RepositoryError } from "~server/domain/errors"
 import type { Result } from "~server/libs/result"
+import type { User } from "../users/types"
 import type { Organization } from "./types"
 
 export interface IOrganizationRepository {
@@ -9,4 +10,9 @@ export interface IOrganizationRepository {
 	listByMemberId(
 		userId: string,
 	): Promise<Result<Organization[], RepositoryError>>
+	getAllMembers(
+		organizationId: string,
+	): Promise<
+		Result<{ accountants: User[]; all: User[] } | null, RepositoryError>
+	>
 }
