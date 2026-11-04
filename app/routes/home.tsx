@@ -1,14 +1,42 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { ChevronRightIcon, PanelLeftIcon } from "lucide-react"
 import { Link, redirect } from "react-router"
-import { getApiClient } from "~app/lib/route-modules/api"
+import { apiClientContext } from "~app/lib/middlewares/api-client-middleware"
+import { redirectError } from "~app/lib/route-modules/redirect-error"
+import { commitSession, getCookieSession } from "~app/lib/session"
 import type { Route } from "./+types/home"
 
-export async function loader({ context }: Route.LoaderArgs) {
-	const api = getApiClient(context)
+export async function loader({ context, request }: Route.LoaderArgs) {
+	const api = context.get(apiClientContext)
 	const res = await api.organizations.me.$get()
-	if (res.status === 401) return redirect("/auth")
+	const cookie = await getCookieSession(request)
+
+	if (!res.ok) return await redirectError(res, cookie)
+
 	const { organizations } = await res.json()
+	console.log(organizations)
+
+	// 少なくとも１つ以上の組織に所属しているか
+	const firstOrganization = organizations[0]
+	if (firstOrganization) {
+		// アクセス履歴より遷移
+		const cookie = await getCookieSession(request)
+		const lastOrganizationId = cookie.get("lastOrganizationId")
+		if (organizations.some((o) => o.id === lastOrganizationId)) {
+			return redirect(`/organizations/${lastOrganizationId}`)
+		}
+
+		// 一つしかなかったらそれに遷移
+		if (organizations.length === 1) {
+			cookie.set("lastOrganizationId", firstOrganization.id)
+			return redirect(`/organizations/${firstOrganization.id}`, {
+				headers: {
+					"Set-Cookie": await commitSession(cookie),
+				},
+			})
+		}
+	}
+	// 複数あったら選択させる、または無い場合
 	return { organizations }
 }
 

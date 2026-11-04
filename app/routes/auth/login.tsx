@@ -13,6 +13,8 @@ import { toZenkakuNum } from "~app/utils/display-formatter"
 import { authErrorToFormErrors } from "~app/utils/form-errors"
 import type { Route } from "./+types/login"
 
+// FIXME: なぜかエラーが出ない
+
 export default function LoginPage({ actionData }: Route.ComponentProps) {
 	const isLoading = useIsFormLoading()
 	const formId = useId()

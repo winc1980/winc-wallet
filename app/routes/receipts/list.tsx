@@ -1,9 +1,9 @@
-import { getApiClient } from "~app/lib/route-modules/api"
+import { apiClientContext } from "~app/lib/middlewares/api-client-middleware"
 import type { Route } from "./+types/list"
 
 export async function loader({ context }: Route.LoaderArgs) {
-	const client = getApiClient(context)
-	const data = await client.receipts.$get().then((res) => res.json())
+	const api = context.get(apiClientContext)
+	const data = await api.receipts.$get().then((res) => res.json())
 	return data
 }
 

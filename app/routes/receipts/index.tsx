@@ -1,6 +1,6 @@
 import { LoaderCircleIcon } from "lucide-react"
 import { Form, useNavigation } from "react-router"
-import { getApiClient } from "~app/lib/route-modules/api"
+import { apiClientContext } from "~app/lib/middlewares/api-client-middleware"
 import type { Route } from "./+types"
 
 export default function ReceiptPage({ actionData }: Route.ComponentProps) {
@@ -31,8 +31,8 @@ export async function action({ request, context }: Route.ActionArgs) {
 		return { success: false as const, error: "ファイルが選択されていません" }
 	}
 
-	const client = getApiClient(context)
-	const response = await client.receipts
+	const api = context.get(apiClientContext)
+	const response = await api.receipts
 		.$post({
 			form: { "receipt-images": files as File[] },
 		})

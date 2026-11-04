@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai"
 import { Hono } from "hono"
-import organizationsApi from "./features/organizations"
+import { organizationHandler } from "./features/organizations/http"
 import receiptsApi from "./features/receipts"
 import usersApi from "./features/users"
 import { authProviderMiddleware } from "./middlewares/auth"
@@ -29,6 +29,6 @@ export const api = new Hono<ApiEnv>()
 	})
 	.route("/users", usersApi)
 	.route("/receipts", receiptsApi)
-	.route("/organizations", organizationsApi)
+	.route("/", organizationHandler)
 
 export type ApiType = typeof api
