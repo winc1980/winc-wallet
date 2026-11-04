@@ -87,5 +87,5 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 	const { error: authError } = await authClient.signUp.email(parseResult.data)
 	if (authError) return { ...authErrorToFormErrors(authError) }
 
-	return redirect("/auth/login")
+	return redirect("/")
 }
