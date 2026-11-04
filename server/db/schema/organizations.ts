@@ -4,7 +4,7 @@ import { authUser } from "./auth"
 
 export const organizationsTable = pgTable("organizations", {
 	id: primaryKey(),
-	name: text().notNull(),
+	name: text().notNull().unique(),
 })
 
 export const organizationMembersTable = pgTable("organization_members", {

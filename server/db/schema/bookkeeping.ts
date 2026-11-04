@@ -6,6 +6,7 @@ import {
 	pgEnum,
 	pgTable,
 	text,
+	unique,
 	uuid,
 } from "drizzle-orm/pg-core"
 import { createdAt, primaryKey } from "../columns"
@@ -31,11 +32,18 @@ export const accountTypeEnum = pgEnum("account_type", [
 ])
 
 // 勘定科目
-export const accountsTable = pgTable("accounts", {
-	id: primaryKey(),
-	name: text().notNull(),
-	type: accountTypeEnum("type").notNull(),
-})
+export const accountsTable = pgTable(
+	"accounts",
+	{
+		id: primaryKey(),
+		name: text().notNull(),
+		type: accountTypeEnum("type").notNull(),
+		eventId: uuid("event_id")
+			.references(() => eventsTable.id)
+			.notNull(),
+	},
+	(t) => [unique("event_account_idx").on(t.eventId, t.name)],
+)
 
 // 仕訳
 export const journalEntriesTable = pgTable("journal_entries", {
@@ -63,12 +71,16 @@ export const journalLinesTable = pgTable(
 )
 
 // イベント
-export const eventsTable = pgTable("events", {
-	id: primaryKey(),
-	name: text().notNull().default("default"),
-	organizationId: uuid("organization_id")
-		.references(() => organizationsTable.id)
-		.notNull(),
-	createdAt: createdAt(),
-	default: boolean().default(false).notNull(),
-})
+export const eventsTable = pgTable(
+	"events",
+	{
+		id: primaryKey(),
+		name: text().notNull().default("default"),
+		organizationId: uuid("organization_id")
+			.references(() => organizationsTable.id)
+			.notNull(),
+		createdAt: createdAt(),
+		default: boolean().default(false).notNull(),
+	},
+	(t) => [unique("event_name_idx").on(t.organizationId, t.name)],
+)
